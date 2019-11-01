@@ -1,26 +1,22 @@
 import React from 'react';
-import logo from './logo.svg';
+//import logo from './logo.svg';
 import './App.css';
+console.log('hello');
 
-function App() {
+let App = function() {
+    return <Toolbar theme="dark" />;
+}
+
+let Toolbar = function(props) {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <ThemedButton theme={props.theme} />
     </div>
   );
+}
+
+let ThemedButton = function(props)  {
+    return <div>{props.theme}</div>;
 }
 
 export default App;
