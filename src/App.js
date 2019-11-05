@@ -1,22 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
+import FormWord from './FormWord.js';
+import Definitions from "./Definitions.js";
 //import logo from './logo.svg';
 import './App.css';
 console.log('hello');
 
-let App = function() {
-    return <Toolbar theme="dark" />;
-}
+let App = () => {
+  const [definitions, setDefinitions] = useState()
 
-let Toolbar = function(props) {
+  const get_defs = function(word) {
+    fetch(`http://api.urbandictionary.com/v0/define?term=${word}`)
+    .then(data => data.json())
+    .then(res => setDefinitions(res.list))
+  }
+
+
   return (
     <div>
-      <ThemedButton theme={props.theme} />
+      <FormWord handleclick={get_defs} />
+      <Definitions definitions={definitions}/>
     </div>
-  );
-}
+  )
 
-let ThemedButton = function(props)  {
-    return <div>{props.theme}</div>;
 }
 
 export default App;
