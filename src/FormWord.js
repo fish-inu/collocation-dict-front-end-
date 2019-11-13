@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useRef } from 'react';
 
 function FormWord(props) {
-  const [word, setWord] = useState()
+  let input_tag = useRef();
     return (
     <div>
-      <input type='text' value={word} placeholder="任意单词" onInput={(e)=>{setWord(e.target.value)}}></input>
-      <button onClick={() => props.handleclick(word) }>查询</button>
+      <input ref={input_tag} type='text' placeholder="任意单词"></input>
+      <button onClick={() => props.handleclick(input_tag.current.value) }>查询</button>
     </div>
   );
 }
