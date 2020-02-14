@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import FormWord from "./FormWord.js";
 import Definitions from "./Definitions.js";
-//import logo from './logo.svg';
 import "./App.css";
+import logo from './col-logo.png'
+import {Image} from 'semantic-ui-react'
 console.log("hello");
 
 let App = () => {
@@ -14,16 +15,17 @@ let App = () => {
 
   const get_defs = function(word) {
     setSpinner(true);
-    fetch(`http://api.urbandictionary.com/v0/define?term=${word}`)
+    fetch(`http://localhost:4000/search/${word}`)
       .then(data => data.json())
       .then(res => {
-        setDefinitions(res.list);
+        setDefinitions(res);
         setSpinner(false);
       });
   };
 
   return (
     <div>
+      <Image src={logo} centered />
       <FormWord handleclick={get_defs} />
       { spinner && <div>loading...</div>}
       <Definitions definitions={definitions}/>

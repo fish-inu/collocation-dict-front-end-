@@ -1,12 +1,25 @@
-import React, { useRef } from 'react';
+import React, { useState } from "react";
+import { Button, Input, Grid } from "semantic-ui-react";
 
 function FormWord(props) {
-  let input_tag = useRef();
-    return (
-    <div>
-      <input ref={input_tag} type='text' placeholder="任意单词"></input>
-      <button onClick={() => props.handleclick(input_tag.current.value) }>查询</button>
-    </div>
+  let [query, setQuery] = useState("");
+
+  return (
+    <Grid centered relaxed columns={2}>
+      <Grid.Column width={2}>
+        <Input
+          type="text"
+          placeholder="type something"
+          onChange={e => setQuery(e.target.value)}
+          value={query}
+        />
+      </Grid.Column>
+      <Grid.Column width={1}>
+        <Button primary onClick={() => props.handleclick(query)}>
+          search
+        </Button>
+      </Grid.Column>
+    </Grid>
   );
 }
 
